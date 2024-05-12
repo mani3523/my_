@@ -16,7 +16,7 @@ import environ
 from decouple import config
 from dotenv import load_dotenv
 load_dotenv()
-
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -140,3 +140,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 LOGIN_REDIRECT_URL="todolist"
 LOGOUT_REDIRECT_URL = "login"
 REGISTER_REDIRECT_URL = "login" 
+
+
+django_heroku.settings(locals())
