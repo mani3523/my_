@@ -1,1 +1,1 @@
-web gunicorn todolist.wsgi:appication --logfile -
+"web gunicorn todolist.wsgi:appication --logfile -" 
