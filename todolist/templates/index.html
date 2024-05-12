@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% load static %}
+{% block title %}
+    <title>Todolist</title>
+{% endblock title %}
+
+{% block content %}
+</br>
+{{todo_index}}
+<div class="main">
+    <marquee class="marq"
+             bgcolor="#ac4db2;"
+             direction="left"
+             loop="">
+        <div class="geek1">Try Our Todoist page</div>
+        <div class="geek2">
+            You can visit our todolist page by click the <b>Let's get start </b> button given below             
+        </div>
+    </marquee>
+</div>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-lg-4" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static "images/1.png" %} " class="rounded-pill" width="240" height="240" alt="Note">
+        </div>
+        <div class="col-lg-4" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static "images/2.png" %}" class="rounded-pill" width="240" height="240" alt="Note">
+        </div>
+        <div class="col-lg-4" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static "images/3.png" %}" class="rounded-pill"  alt="Note">
+        </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-10 offset-md-1">
+        <center><p class = "h1 text-primary">"Notepad is a simple text editor for Windows; it creates and edits plain text documents."</p></center>
+        <center><p class = "h4">'First released in 1983 to commercialize the computer mouse in MS-DOS.'</p></center>
+        <center><p class = "h6 text-info">'Notepad has been part of every version of Windows ever since.'</p></center>
+    
+        <center><a href="{% url "todolist" %}"><button  type="button" class="btn btn-primary btn-lg mt-2"><p class="text-white">Let's get start</p></a></button></center>
+    
+{% endblock content %}

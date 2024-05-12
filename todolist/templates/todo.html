@@ -1,0 +1,135 @@
+{% extends "main.html" %}
+{% load static %}
+{% block title %}
+<title> Taskmate </title>
+{% endblock title %}
+{% block content %}
+</br>
+{% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <p class="text-md-end">Login as {{ user.username }}!</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-danger btn-sm me-md-2">Log Out</button>
+            </div>
+        </form>
+    {% else %}
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+    </br>
+<div class="container"> 
+    <div class="ticker"> 
+        <div class="news">
+            <marquee class="marq"
+            bgcolor="white"
+            direction="left"
+            loop="" > 
+                <p>You can note your tasks, you can view your tasks as much as you want and you can edit, delete and update your tasks as per your requirement</p> 
+            </marquee> 
+        </div> 
+    </div> 
+</div>
+</br>
+<h5>Todolist</h5>
+<h6>
+    Organize your work and life, finally.
+    Become focused, organized, and calm with Todoist. 
+    The world’s #1 task manager and to-do list app.
+</h6>
+</br>
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+    New task added successful
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+<form method = 'POST' class = 'row'>
+    {% csrf_token %}
+    <label class = 'col-lg-4'>New Task</label>
+    <input type="text" class="form-control col-lg-6"  name = 'task' placeholder = "New task?">
+</br>
+    <button type="submit" class="btn btn-info col-lg-2">Add task</button>
+    <small id="text" class="form-text text-muted">Your new task will be added to given table</small>
+</form>
+</br>
+<div class='container'>
+    <table class="table table-bordered border border-success text-center">
+        <thead class="table table-dark">
+          <tr>
+            <th scope="col">Task</th>
+            <th scope="col">Complete</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for obj in all_tasks  %}
+            {% if obj.done%}
+                <tr class="table-success">
+                    <th scope="row">{{obj.task}}</td>
+                    <td><a href = "{% url "complete" obj.id %}"><button type="button" class="btn btn-warning">Mark as pending</button></a></td>
+                    <td><a href = "{% url "edit" obj.id %}"><button type="button" class="btn btn-warning">Edit</button></a></td>
+                    <td><a href = "{% url "delete" obj.id %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <th scope="row">{{obj.task}}</td>
+                    <td><a href = "{% url "complete" obj.id %}"><button type="button" class="btn btn-success">Mark as complete</button></a></td>
+                    <td><a href = "{% url "edit" obj.id %}"><button type="button" class="btn btn-warning">Edit</button></a></td>
+                    <td><a href = "{% url "delete" obj.id %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                </tr>
+            {% endif %}
+            {% endfor %}
+    </tbody>
+    </table>
+</br>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item"><a class="page-link" href="?pg=1">First</a></li>
+      {% if all_tasks.number %}
+      <li class="page-item"><a class="page-link" href="?pg= {{all_tasks.number}}">{{all_tasks.number}}</a></li>
+      {% endif %}
+      {% if all_tasks.has_next %}
+      <li class="page-item"><a class="page-link" href="?pg= {{all_tasks.next_page_number}}">{{all_tasks.next_page_number}}</a></li>
+      {% endif %}
+      {% if all_tasks.has_num_pages %}
+      <li class="page-item"><a class="page-link" href="?pg= {{all_tasks.paginator_num_pages}}">Last</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  <center>
+    <p class = "h1 text-success">
+        <b>Trusted by top product based companies</b>
+    </p>
+</center>
+  <div class="container">
+    <div class="row mt-5">
+        <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static "images/microsoft.jpeg" %} " class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Microsoft</p>
+        </div>
+        <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static "images/amazon.jpeg" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Amazon</p>
+        </div>
+        <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static "images/disney.jpeg" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Disney</p>
+        </div>
+        <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static "images/netflix.png" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Netflix</p>
+        </div>
+        <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static "images/salesforce.png" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Salesforce</p>
+        </div>
+        <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <img src="{% static "images/meta.png" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Meta</p>
+        </div>
+    </div>
+  </div>
+</br>
+<center>
+    <p>
+        <i>42+ million people and teams trust their sanity and productivity to Todoist</i>
+    </p>
+</center>
+
+{% endblock content %}
