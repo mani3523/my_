@@ -1,1 +1,1 @@
-web: gunicorn todolist.wsgi:application
+web: gunicorn taskmate.wsgi --log-file -
