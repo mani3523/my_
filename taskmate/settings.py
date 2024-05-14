@@ -29,7 +29,7 @@ environ.Env.read_env()
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', default='29c63b805b7cd23d87ec09301c3b2a8892799ef6713011df')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG')
+DEBUG = os.getenv('DJANGO_DEBUG', default=True)
 
 ALLOWED_HOSTS = ['*']
 
