@@ -35,7 +35,7 @@ def features(request):
     }
     return render(request, 'features.html', context)
 
-# @login_required(login_url="/account/login")
+@login_required(login_url="/account/login")
 def about(request):
     context = {
         'todo_about':'Welcome to Taskmate About us page',
