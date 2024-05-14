@@ -26,11 +26,12 @@ environ.Env.read_env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-
+if not SECRET_KEY:
+    SECRET_KEY = '29c63b805b7cd23d87ec09301c3b2a8892799ef6713011df'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['mani-todolist-0c96402aa841.herokuapp.com','127.0.0.1']
 
 
 # Application definition
