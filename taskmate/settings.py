@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = os.getenv('DJANGO_DEBUG') == 'True'
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://mani-todolist-4e38ad9b7156.herokuapp.com/']
+CSRF_TRUSTED_ORIGINS = ['https://mani-todolist-9fa3ee619a23.herokuapp.com/']
 
 
 # Application definition
