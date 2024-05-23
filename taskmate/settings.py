@@ -135,7 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'todolist', 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
@@ -155,7 +155,8 @@ REGISTER_REDIRECT_URL = "login"
 django_heroku.settings(locals())
 
 # sessions in django
-# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_COOKIE_SECURE = True
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 # CACHES = {
 # "default": {
@@ -163,5 +164,5 @@ django_heroku.settings(locals())
 # "LOCATION": "127.0.0.1:11211",
 # }
 # }
-# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-# SESSION_COOKIE_AGE = 1800 # 30 minutes
+
+SESSION_EXPIRE_SECONDS = 1800 # 30 minutes
