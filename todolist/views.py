@@ -74,6 +74,16 @@ def complete(request, task_id):
         messages.error(request,"Access denied! you not allowed to access this page anymore")
     return redirect('todolist')
 
+@login_required    
+def pending(request, task_id):
+    task = Todolist.objects.get(pk = task_id)
+    if task.manager == request.user:
+        task.done = False
+        task.save()
+    else:
+        messages.error(request,("Access denied! you are not able to do this yask"))
+    return redirect('todolist')
+
 def index(request):
     contaxt = {
         'todo_index':'Welcome to index page',
