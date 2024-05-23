@@ -6,18 +6,12 @@
 <title>User Login</title>
 
 {% endblock title %}
-{% comment %} </br>
-{% for message in messages %}
-<div class = "alert alert-info alert-dismissible fade show" role="alert {{ message.tags }}">
-        {{ message }}
-    </div>
-{% endfor %} {% endcomment %}
 </br>
 <h2>Welcome to Login Page</h2>
 {% block content %}
 </br>
 {% for message in messages  %}
-    <div class = "alert alert-info alert-dismissible fade show" role="alert {{ message.tags }}">
+    <div class = "alert alert-danger alert-dismissible fade show" role="alert {{ message.tags }}">
         {{message}}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
