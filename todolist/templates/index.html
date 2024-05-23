@@ -15,6 +15,7 @@
         </form>
     {% else %}
         <p>You are not logged in<a href="{% url 'login' %}"> click here </a>to login</p>
+        <p>Don't have any account<a href="{% url 'register' %}"> click here </a>to register</p>
         
     {% endif %}
 </br>
