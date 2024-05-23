@@ -3,8 +3,20 @@
 {% block title %}
     <title>Todolist</title>
 {% endblock title %}
-
 {% block content %}
+</br>
+{% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <p class="text-md-end">Login as {{ user.username }}!</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-danger btn-sm me-md-2">Log Out</button>
+            </div>
+        </form>
+    {% else %}
+        <p>You are not logged in<a href="{% url 'login' %}"> click here </a>to login</p>
+        
+    {% endif %}
 </br>
 {{todo_index}}
 <div class="main">

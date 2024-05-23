@@ -18,15 +18,15 @@ def todolist(request):
             instance = form.save(commit=False)
             instance.manager = request.user
             instance.save()
-            messages.success(request,("New task successfully added"))
-        return redirect('todolist')
+            messages.success(request, "New task successfully added")
+            return redirect('todolist') 
     else:
-        all_tasks = Todolist.objects.filter(manager = request.user)
+        all_tasks = Todolist.objects.filter(manager=request.user)
         all_tasks = Todolist.objects.all().order_by('id')
-        paginator = Paginator(all_tasks,5)
+        paginator = Paginator(all_tasks, 5)
         page = request.GET.get('pg')
         all_tasks = paginator.get_page(page)
-        return render(request,'todo.html', {'all_tasks':all_tasks})
+        return render(request, 'todo.html', {'all_tasks': all_tasks})
 
 @login_required(login_url="/account/login")
 def features(request):
@@ -35,7 +35,6 @@ def features(request):
     }
     return render(request, 'features.html', context)
 
-# @login_required(login_url="/account/login")
 def about(request):
     context = {
         'todo_about':'Welcome to Taskmate About us page',
@@ -68,31 +67,24 @@ def edit(request, task_id):
 def complete(request, task_id):
     task = Todolist.objects.get(pk=task_id)
     if task.manager == request.user:
-        task.done=True
+        task.done = True
         task.save()
     else:
-        messages.error(request,"Access denied! you not allowed to access this page anymore")
+        messages.error(request, "Access denied! You are not allowed to access this page anymore")
     return redirect('todolist')
 
 @login_required    
 def pending(request, task_id):
-    task = Todolist.objects.get(pk = task_id)
+    task = Todolist.objects.get(pk=task_id)
     if task.manager == request.user:
         task.done = False
         task.save()
     else:
-        messages.error(request,("Access denied! you are not able to do this yask"))
+        messages.error(request, "Access denied! You are not able to do this task")
     return redirect('todolist')
 
 def index(request):
-    contaxt = {
-        'todo_index':'Welcome to index page',
-        }
-    return render(request, 'index.html',contaxt)
-
-def session(request):
-    contaxt = {
-        'todo_session':'Session Expired',
-        }
-    return render(request, 'session.html',contaxt)
-
+    context = {
+        'todo_index': 'Welcome to index page',
+    }
+    return render(request, 'index.html', context)

@@ -164,4 +164,4 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 # }
 # }
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 60 # 10 minutes
+SESSION_COOKIE_AGE = 1800 # 30 minutes
