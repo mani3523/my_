@@ -162,5 +162,5 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 # "LOCATION": "127.0.0.1:11211",
 # }
 # }
-SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 600 # 10 minutes
