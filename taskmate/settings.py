@@ -149,8 +149,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATES_PACK = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 LOGIN_REDIRECT_URL="todolist"
-LOGOUT_REDIRECT_URL = "login"
+LOGOUT_REDIRECT_URL = "logout"
 REGISTER_REDIRECT_URL = "login" 
+# SESSION_REDIRECT_URL = 'session'
 django_heroku.settings(locals())
 
 # sessions in django
@@ -163,4 +164,4 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 # }
 # }
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 300 # 10 minutes
+SESSION_COOKIE_AGE = 60 # 10 minutes

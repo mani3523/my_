@@ -90,3 +90,9 @@ def index(request):
         }
     return render(request, 'index.html',contaxt)
 
+def session(request):
+    contaxt = {
+        'todo_session':'Session Expired',
+        }
+    return render(request, 'session.html',contaxt)
+

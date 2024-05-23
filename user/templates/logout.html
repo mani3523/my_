@@ -9,9 +9,8 @@
 </br>
 {% block content %}
 </br>
-    <h2>Welcome to logoutn Page</h2>
-{% endblock content %}
-<form method="post" action="{% url 'logout' %}">
+<form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-    <button type="submit">logout</button>
+    <p>you are logged out from the site <button type="submit" class="btn btn-link">click here</button>to login</p>
 </form>
+{% endblock content %}
