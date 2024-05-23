@@ -154,7 +154,7 @@ REGISTER_REDIRECT_URL = "login"
 django_heroku.settings(locals())
 
 # sessions in django
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 # CACHES = {
 # "default": {
@@ -162,5 +162,5 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 # "LOCATION": "127.0.0.1:11211",
 # }
 # }
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 600 # 10 minutes
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# SESSION_COOKIE_AGE = 600 # 10 minutes
