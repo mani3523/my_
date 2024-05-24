@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django_auto_logout.middleware.auto_logout',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'taskmate.urls'
@@ -167,11 +168,16 @@ django_heroku.settings(locals())
 # "LOCATION": "127.0.0.1:11211",
 # }
 # }
-# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-# SESSION_COOKIE_AGE = 1800 # 30 minutes
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 1800 # 30 minutes
 AUTO_LOGOUT = {
     'IDLE_TIME': timedelta(minutes=1),
     'SESSION_TIME': timedelta(minutes=30),
-    'MESSAGE': 'The session has expired. Please login again to continue.',
+    'MESSAGE': 'The session has been expired. Please login again to continue.',
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
 }
+SESSION_EXPIRE_SECONDS = 1800  # 30 minutes
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True # Invalid session  
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 # group by minute
+SESSION_TIMEOUT_REDIRECT = 'session'

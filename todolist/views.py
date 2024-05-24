@@ -10,6 +10,10 @@ from django.core.paginator import Paginator
 
 from django.contrib.auth.decorators import login_required
 
+from django.utils import timezone
+
+from django.conf import settings
+
 @login_required(login_url="/account/login")
 def todolist(request):
     if request.method == "POST":
@@ -88,3 +92,17 @@ def index(request):
         'todo_index': 'Welcome to index page',
     }
     return render(request, 'index.html', context)
+
+# def timer(request):
+#     remaining_time = (request.session['session_expiry'] - timezone.now()).total_seconds()
+#     return render(request, 'main.html', {'remaining_time': remaining_time})
+
+# def my_view(request):
+#     idle_time = settings.IDLE_TIME
+#     return render(request, 'my_template.html', {'idle_time': idle_time})
+
+def session(request):
+    context = {
+        'session': 'session expired',
+    }
+    return render(request, 'session.html', context)
