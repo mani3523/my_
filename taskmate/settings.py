@@ -70,7 +70,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, '/templates/'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -181,3 +181,9 @@ SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE=True # Invalid session  
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 # group by minute
 SESSION_TIMEOUT_REDIRECT = 'session'
+
+# Proxy server
+# Set default values depend on your needs.
+PROXY_ENABLE = os.getenv("ENABLE_PROXY")
+PROXY_HOST = os.getenv("ENABLE_HOST")
+PROXY_PORT = os.getenv("ENABLE_PORT")

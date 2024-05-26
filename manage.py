@@ -2,11 +2,15 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from django.conf import settings
 
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'taskmate.settings')
+    if settings.PROXY_ENABLE:
+        proxy_uri = f"socks5h://{settings.PROXY_HOST}:{settings.PROXY_PORT}"
+        os.environ['http_proxy'] = proxy_uri
+        os.environ['https_proxy'] = proxy_uri
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
