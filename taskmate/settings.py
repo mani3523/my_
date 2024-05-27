@@ -182,7 +182,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE=True # Invalid session
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 # group by minute
 SESSION_TIMEOUT_REDIRECT = 'session'
 
-# Proxy server
+# Proxy servers
 # Set default values depend on your needs.
 PROXY_ENABLE = os.getenv("ENABLE_PROXY")
 PROXY_HOST = os.getenv("ENABLE_HOST")
