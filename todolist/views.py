@@ -1,18 +1,10 @@
 from django.shortcuts import render, redirect
-
 from todolist.models import Todolist
-
 from todolist.forms import Taskform
-
 from django.contrib import messages
-
 from django.core.paginator import Paginator
-
 from django.contrib.auth.decorators import login_required
-
 from django.utils import timezone
-
-from django.conf import settings
 
 @login_required(login_url="/account/login")
 def todolist(request):
@@ -23,13 +15,13 @@ def todolist(request):
             instance.manager = request.user
             instance.save()
             messages.success(request, "New task successfully added")
-            return redirect('todolist') 
+            return redirect('todolist')
     else:
-        all_tasks = Todolist.objects.filter(manager=request.user)
-        all_tasks = Todolist.objects.all().order_by('id')
+        all_tasks = Todolist.objects.filter(manager=request.user).order_by('id')
         paginator = Paginator(all_tasks, 5)
         page = request.GET.get('pg')
         all_tasks = paginator.get_page(page)
+        
         return render(request, 'todo.html', {'all_tasks': all_tasks})
 
 @login_required(login_url="/account/login")
@@ -93,13 +85,6 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
-# def timer(request):
-#     remaining_time = (request.session['session_expiry'] - timezone.now()).total_seconds()
-#     return render(request, 'main.html', {'remaining_time': remaining_time})
-
-# def my_view(request):
-#     idle_time = settings.IDLE_TIME
-#     return render(request, 'my_template.html', {'idle_time': idle_time})
 
 def session(request):
     context = {

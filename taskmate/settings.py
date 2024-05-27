@@ -176,7 +176,7 @@ django_heroku.settings(locals())
 #     'MESSAGE': 'The session has been expired. Please login again to continue.',
 #     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
 # }
-SESSION_EXPIRE_SECONDS = 120  # 30 minutes
+SESSION_EXPIRE_SECONDS = 1800  # 30 minutes
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE=True # Invalid session  
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY_GRACE_PERIOD = 60 # group by minute

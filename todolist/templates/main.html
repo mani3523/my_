@@ -11,30 +11,31 @@
     <link rel="icon" href="{% static "images/todologo.jpeg" %}" type="image/gif">
   </head>
   <body class="p-3 mb-2 bg-info-subtle text-info-emphasis">
-    
     <div class="container">
+
     </br>
-    <nav class="navbar bg-primary" data-bs-theme="dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url "index" %}"><img src={% static "images/logo.png" %} alt="Taskmate" width="50" height="50"class="d-inline-block align-text-center">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url "todolist" %}">Todolist</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url "features" %}">Features</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url "about" %}">About</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+    <nav class="navbar navbar-expand-sm bg-info   navbar-danger fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url "index" %}"><img src="{% static "images/logo.png" %}"alt="Logo" width="40" height="40">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "todolist" %}">Todoist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "features" %}">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url "about" %}">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
         {% block content %}
         {% endblock content %}
 
