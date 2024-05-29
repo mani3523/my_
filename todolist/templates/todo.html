@@ -4,17 +4,73 @@
 <title> Taskmate </title>
 {% endblock title %}
 {% block content %}
+<style>
+    html {
+        height: 100%;
+      }
+      
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      
+      .button_slide {
+        color: #FFFFFF;
+        border: 2px solid rgb(216, 2, 134);
+        border-radius: 0px;
+        padding: 5px 15px;
+        display: inline-block;
+        font-family: "Lucida Console", Monaco, monospace;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        box-shadow: inset 0 0 0 0 #D80286;
+        -webkit-transition: ease-out 0.4s;
+        -moz-transition: ease-out 0.4s;
+        transition: ease-out 0.4s;
+      }
+      
+      .slide_down:hover {
+        box-shadow: inset 0 100px 0 0 #D80286;
+      }
+      
+      .slide_right:hover {
+        box-shadow: inset 400px 0 0 0 #D80286;
+      }
+      
+      .slide_left:hover {
+        box-shadow: inset 0 0 0 50px #D80286;
+      }
+      
+      .slide_diagonal:hover {
+        box-shadow: inset 400px 50px 0 0 #D80286;
+      }
+      
+      #outer {
+        width: 364px;
+        margin: 50px auto 0 auto;
+        text-align: center;
+      }
+      .custom-btn {
+        background-color: transparent !important;
+        /* Add other custom styles if needed */
+    }
+    
+</style>
 </br>
 {% if user.is_authenticated %}
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <p class="text-md-end">Login as {{ user.username }}!</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" class="btn btn-danger btn-sm me-md-2">Log Out</button>
-            </div>
-        </form>
+<form method="post">
+    {% csrf_token %}
+</br>
+    <h5 class="text text-white">Login as {{ user.username }}!</h5>
+    <div class="d-grid gap-2 d-md-flex justify-content-md">
+        <div class="button_slide slide_diagonal">
+            <a href="{% url "logout" %}" class="btn btn-sm animated-button thar-four custom-btn"><h6 class='text-white'>Logout</h6></a>
+        </div>
+    </div>    
+</form>
     {% else %}
-        <p>You are not logged in</p>
+        <p class="text text-white">You are not logged in</p>
         <a href="{% url 'login' %}">Log In</a>
     {% endif %}
     </br>
@@ -31,8 +87,8 @@
     </div> 
 </div>
 </br>
-<h5>Todolist</h5>
-<h6>
+<h5 class="text-white">Todolist</h5>
+<h6 class="text-white">
     Organize your work and life, finally.
     Become focused, organized, and calm with Todoist. 
     The world’s #1 task manager and to-do list app.
@@ -47,11 +103,13 @@
 </br>
 <form method = 'POST' class = 'row'>
     {% csrf_token %}
-    <label class = 'col-lg-4'>New Task</label>
+    <label class = 'text-white'>New Task</label>
     <input type="text" class="form-control col-lg-6"  name = 'task' placeholder = "New task?">
 </br>
-    <button type="submit" class="btn btn-info col-lg-2">Add task</button>
-    <small id="text" class="form-text text-muted">Your new task will be added to given table</small>
+<div class="d-grid gap-2 d-md-flex justify-content-md">
+    <button class="button_slide slide_left" type="submit" style="background-color: transparent;">Add task</button>
+</div>
+
 </form>
 </br>
 <div class='container'>
@@ -69,16 +127,16 @@
             {% if obj.done%}
                 <tr class="table-success">
                     <th scope="row">{{obj.task}}</td>
-                    <td><a href = "{% url "pending" obj.id %}"><button type="button" class="btn btn-warning">Mark as Pending</button></a></td>
-                    <td><a href = "{% url "edit" obj.id %}"><button type="button" class="btn btn-warning">Edit</button></a></td>
-                    <td><a href = "{% url "delete" obj.id %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                    <td><a href = "{% url "pending" obj.id %}"><button type="button" class="button_slide slide_left" style="background-color: transparent;color: black;">Mark as Pending</button></a></td>
+                    <td><a href = "{% url "edit" obj.id %}"><button type="button" class="button_slide slide_right" style="background-color: transparent;color: black;">Edit</button></a></td>
+                    <td><a href = "{% url "delete" obj.id %}"><button type="button" class="button_slide slide_down" style="background-color: transparent;color: black;">Delete</button></a></td>
                 </tr>
             {% else %}
                 <tr>
                     <th scope="row">{{obj.task}}</td>
-                    <td><a href = "{% url "complete" obj.id %}"><button type="button" class="btn btn-success">Mark as Complete</button></a></td>
-                    <td><a href = "{% url "edit" obj.id %}"><button type="button" class="btn btn-warning">Edit</button></a></td>
-                    <td><a href = "{% url "delete" obj.id %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                    <td><a href = "{% url "complete" obj.id %}"><button type="button" class="button_slide slide_diagonal" style="background-color: transparent;color: black;">Mark as Complete</button></a></td>
+                    <td><a href = "{% url "edit" obj.id %}"><button type="button" class="button_slide slide_right" style="background-color: transparent;color: black;">Edit</button></a></td>
+                    <td><a href = "{% url "delete" obj.id %}"><button type="button" class="button_slide slide_down" style="background-color: transparent;color: black;">Delete</button></a></td>
                 </tr>
             {% endif %}
             {% endfor %}
@@ -100,40 +158,45 @@
     </ul>
   </nav>
   <center>
-    <p class = "h1 text-success">
+    <p class = "h1 text-light">
         <b>Trusted by top product based companies</b>
     </p>
 </center>
   <div class="container">
     <div class="row mt-5">
         <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
-            <img src="{% static "images/microsoft.jpeg" %} " class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Microsoft</p>
+            <img src="{% static "images/microsoft.jpeg" %} " class="rounded-pill" width="100" height="100" alt="Note"><p class="text-white container">Microsoft</p>
         </div>
         <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
-            <img src="{% static "images/amazon.jpeg" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Amazon</p>
+            <img src="{% static "images/amazon.jpeg" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="text-white container">Amazon</p>
         </div>
         <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
-            <img src="{% static "images/disney.jpeg" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Disney</p>
+            <img src="{% static "images/disney.jpeg" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="text-white container">Disney</p>
         </div>
         <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
-            <img src="{% static "images/netflix.png" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Netflix</p>
+            <img src="{% static "images/netflix.png" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="text-white container">Netflix</p>
         </div>
         <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
-            <img src="{% static "images/salesforce.png" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Salesforce</p>
+            <img src="{% static "images/salesforce.png" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="text-white container">Salesforce</p>
         </div>
         <div class="col-md-2" class="shadow-lg p-3 mb-5 bg-white rounded">
-            <img src="{% static "images/meta.png" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="container">Meta</p>
+            <img src="{% static "images/meta.png" %}" class="rounded-pill" width="100" height="100" alt="Note"><p class="text-white container">Meta</p>
         </div>
     </div>
   </div>
 </br>
 <center>
-    <p>
+    <p class='text-white'>
         <i>42+ million people and teams trust their sanity and productivity to Todoist</i>
     </p>
 </center>
 <div class='container'>
     {{ redirect_to_login_immediately }}
 </div>
-
+</br>
+</br>
+</br>
+</br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 {% endblock content %}

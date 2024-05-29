@@ -81,7 +81,7 @@ def pending(request, task_id):
 
 def index(request):
     context = {
-        'todo_index': 'Welcome to index page',
+        'todo_index': 'Welcome to Todolist',
     }
     return render(request, 'index.html', context)
 

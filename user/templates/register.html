@@ -18,17 +18,81 @@
         </button>
     </div>
 {% endfor %}
+<style>
+    html {
+        height: 100%;
+      }
+      
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      
+      .button_slide {
+        color: #FFFFFF;
+        border: 2px solid rgb(216, 2, 134);
+        border-radius: 0px;
+        padding: 5px 15px;
+        display: inline-block;
+        font-family: "Lucida Console", Monaco, monospace;
+        font-size: 14px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        box-shadow: inset 0 0 0 0 #D80286;
+        -webkit-transition: ease-out 0.4s;
+        -moz-transition: ease-out 0.4s;
+        transition: ease-out 0.4s;
+      }
+      
+      .slide_down:hover {
+        box-shadow: inset 0 100px 0 0 #D80286;
+      }
+      
+      .slide_right:hover {
+        box-shadow: inset 400px 0 0 0 #D80286;
+      }
+      
+      .slide_left:hover {
+        box-shadow: inset 0 0 0 50px #D80286;
+      }
+      
+      .slide_diagonal:hover {
+        box-shadow: inset 400px 50px 0 0 #D80286;
+      }
+      
+      #outer {
+        width: 364px;
+        margin: 50px auto 0 auto;
+        text-align: center;
+      }
+      .custom-btn {
+        background-color: transparent !important;
+        /* Add other custom styles if needed */
+    }
+    .loginfrm {
+        color: white;
+    }
+    .container.c1 * {
+        color: #FFFFFF;
+    }
+</style>
 <div class='container'>
-    <form method='POST' class='mt-5 col-6'>
+    <form method='POST' class="loginfrm mt-5 col-6">
         {% csrf_token %}
         {{register_form|crispy}}
-        <button type='submit' class="btn btn-info btn-lg btn-block">Register</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-md">
+            <button class="button_slide slide_diagonal" type="submit" style="background-color: transparent;">Register</button>
+        </div>
     </form>
 </div>
 <form action="{% url 'login' %}" class='mt-5 col-6'>
     {% csrf_token %}
     <p>Already have an account?</p>
     {{form|crispy}}
-    <button type="submit" class="btn btn-success btn-lg btn-block">Login</button>
+    <div class="d-grid gap-2 d-md-flex justify-content-md">
+        <button class="button_slide slide_left" type="submit" style="background-color: transparent;">Login</button>
+    </div>
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 {% endblock content %}
