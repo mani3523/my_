@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'user',
     'crispy_forms',
     'crispy_bootstrap5',
+    'sass_processor',
+    'compressor',
 ]
 
 MIDDLEWARE = [
@@ -140,13 +142,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'todolist', 'static')]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'todolist', 'static'),
+    os.path.join(BASE_DIR, 'user', 'static')
+]
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
-MEDIA_URL= "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = "/media/"
+
+
+COMPRESS_ENABLED = True
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -187,3 +203,9 @@ SESSION_TIMEOUT_REDIRECT = 'session'
 PROXY_ENABLE = os.getenv("ENABLE_PROXY")
 PROXY_HOST = os.getenv("ENABLE_HOST")
 PROXY_PORT = os.getenv("ENABLE_PORT")
+
+#sass processor
+SASS_PROCESSOR_ROOT = STATIC_ROOT
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(BASE_DIR, 'todolist', 'static', 'scss'),
+]

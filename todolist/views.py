@@ -7,22 +7,29 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
 @login_required(login_url="/account/login")
+@login_required(login_url="/account/login")
 def todolist(request):
+    all_tasks = Todolist.objects.filter(manager=request.user).order_by('id')
+    paginator = Paginator(all_tasks, 5)
+    page = request.GET.get('pg')
+    all_tasks = paginator.get_page(page)
+
     if request.method == "POST":
-        form = Taskform(request.POST or None)
+        form = Taskform(request.POST)
         if form.is_valid():
-            instance = form.save(commit=False)
-            instance.manager = request.user
-            instance.save()
-            messages.success(request, "New task successfully added")
-            return redirect('todolist')
+            task_name = form.cleaned_data.get('task', '').strip()
+            if task_name:
+                instance = form.save(commit=False)
+                instance.manager = request.user
+                instance.save()
+                messages.success(request, "New task successfully added")
+                return redirect('todolist')
+            else:
+                messages.error(request, "Task cannot be empty")
     else:
-        all_tasks = Todolist.objects.filter(manager=request.user).order_by('id')
-        paginator = Paginator(all_tasks, 5)
-        page = request.GET.get('pg')
-        all_tasks = paginator.get_page(page)
+        form = Taskform()
         
-        return render(request, 'todo.html', {'all_tasks': all_tasks})
+    return render(request, 'todo.html', {'all_tasks': all_tasks, 'form': form})
 
 @login_required(login_url="/account/login")
 def features(request):
@@ -42,7 +49,6 @@ def delete(request, task_id):
     task = Todolist.objects.get(pk=task_id)
     if task.manager == request.user:
         task.delete()
-        messages.success(request, "Task deleted")
     else:
         messages.error(request, "Access denied! You are not able to delete this task")
     return redirect('todolist')
