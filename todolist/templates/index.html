@@ -11,7 +11,7 @@
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
         </br>
-            <h5>Login as {{ user.username }}!</h5>
+            <h5 style="color: purple">Login as {{ user.username }}!</h5>
             <button><span class="text">Logout</span><span class="shimmer"></span></button>
         </form>
     {% else %}
@@ -39,7 +39,7 @@
     <div class="col-md-10 offset-md-1">
         <center><p class = "h1 text-primary">"Notepad is a simple text editor for Windows; it creates and edits plain text documents."</p></center>
         <center><p class = "h4 text-dark">'First released in 1983 to commercialize the computer mouse in MS-DOS.'</p></center>
-        <center><p class = "h6 text-info">'Notepad has been part of every version of Windows ever since.'</p></center>
+        <center><p class = "h6 text-danger">'Notepad has been part of every version of Windows ever since.'</p></center>
     </br>
         <center>
             <a href="{% url 'todolist' %}">
