@@ -44,6 +44,12 @@ def about(request):
     }
     return render(request, 'about.html', context)
 
+def contact(request):
+    context = {
+        'todo_contact':'Welcome to Taskmate Contact us page',
+    }
+    return render(request, 'contact.html', context)
+
 @login_required(login_url="/account/login")
 def delete(request, task_id):
     task = Todolist.objects.get(pk=task_id)

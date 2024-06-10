@@ -1,0 +1,101 @@
+{% extends "main.html" %}
+{% load static %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="generator" content="Hugo 0.84.0">
+{% block title %}
+<title>Contact Us</title>
+{% endblock title %}
+{% block content %}
+<!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap5.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+</br>
+  <div class="container" style="margin-top: 1%;">
+    <div class="bg-light">
+      <div class="row">
+        <div class="col-lg-8 col-md-12 p-5 bg-white rounded-3">
+          <div class="d-flex mb-3 flex-column">
+            <h1 class="h5 text-capitalize my-4">What service You need ?</h1>
+            <div class="d-flex flex-wrap">
+              <select class="form-select" aria-label="Default select example" id="services">
+                <option selected>----Select your choice---</option>
+                <option value="Web_development">Web development</option>
+                <option value="Logo_Design">Logo Design</option>
+                <option value="Video_Editor">Video Editor</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6 p-3">
+              <input required placeholder="first name" type="text" name="" id="first_name" />
+            </div>
+            <div class="col-md-6 p-3">
+              <input required placeholder="last name" type="text" name="" id="last_name" />
+            </div>
+            <div class="col-md-6 p-3">
+              <input required placeholder="E-mail" type="email" name="" id="email" />
+            </div>
+            <div class="col-md-6 p-3">
+              <input required placeholder="phone" type="tel" name="" id="tele_number" />
+            </div>
+            <div class="col-md">
+              <textarea required name="" placeholder="write your message" id="message" cols="30" rows="1"></textarea>
+            </div>
+            <div class="text-end mt-4">
+              <button class="btn px-4 py-3 btn-outline-dark" type="submit" onclick="submit_form()" />Send Message</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 text-white aside px-4 py-5">
+          <div class="mb-5">
+            <h1 class="h3">Contact Information</h1>
+            <p class="opacity-50">
+              <small> Fill out the from and we will get back to you whitin 24 hours </small>
+            </p>
+          </div>
+          <div class="d-flex flex-column px-0">
+            <ul class="m-0 p-0">
+              <li class="d-flex justify-content-start align-items-center mb-4">
+                <span class="opacity-50 d-flex align-items-center me-3 fs-2">
+                  <ion-icon name="call"></ion-icon>
+                </span>
+                <span>+91xxxxxxxxxx</span>
+              </li>
+              <li class="d-flex align-items-center r mb-4">
+                <span class="opacity-50 d-flex align-items-center me-3 fs-2">
+                  <ion-icon name="mail"></ion-icon>
+                </span>
+                <span>example@example.com</span>
+              </li>
+              <li class="d-flex justify-content-start align-items-center mb-4">
+                <span class="opacity-50 d-flex align-items-center me-3 fs-2">
+                  <ion-icon name="pin"></ion-icon>
+                </span>
+                <span>Andhra Pradesh <br /> India, 533464 </span>
+              </li>
+            </ul>
+            <div class="text-muted text-center text-white">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  <script src="{% static 'js/sweetalert.js' %}"></script>
+  <script>
+    // This the submit form function
+    function submit_form() {
+      var services = document.getElementById("services").value;
+      var first_name = document.getElementById("first_name").value;
+      var last_name = document.getElementById("last_name").value;
+      var email = document.getElementById("email").value;
+      var tele_number = document.getElementById("tele_number").value;
+      var message = document.getElementById("message").value;
+      swal("Request is sent", "we will get back to you with in 24 hours!", "success").then(function() {});
+    }
+  </script>
+{% endblock content %}
